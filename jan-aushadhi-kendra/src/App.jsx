@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-blue-50/30 to-white">
-      {/* Top Bar - Modern Blue Theme */}
+      {/* Top Bar */}
       <div className="w-full bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white text-xs sm:text-sm shadow-md">
         <div className="section-container flex flex-col sm:flex-row items-center justify-between gap-3 py-3.5">
           <p className="flex items-center gap-2">
@@ -36,7 +36,7 @@ const App = () => {
         </div>
       </div>
 
-      {/* Navbar - Sleek Modern Design */}
+      {/* Navbar */}
       <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-blue-100/30 shadow-sm">
         <div className="section-container flex items-center justify-between py-4">
           {/* Logo */}
@@ -60,6 +60,7 @@ const App = () => {
               ["Home", "hero"],
               ["About", "about"],
               ["Services", "medicines"],
+              ["Generic Info", "generic-info"],
               ["Why Us", "benefits"],
               ["Visit", "location"],
               ["Contact", "contact"],
@@ -111,6 +112,7 @@ const App = () => {
                 ["Home", "hero"],
                 ["About", "about"],
                 ["Services", "medicines"],
+                ["Generic Info", "generic-info"],
                 ["Why Us", "benefits"],
                 ["Visit", "location"],
                 ["Contact", "contact"],
@@ -128,7 +130,7 @@ const App = () => {
         )}
       </header>
 
-      {/* Hero Section - Modern Gradient */}
+      {/* Hero Section */}
       <main className="flex-1">
         <section
           id="hero"
@@ -434,6 +436,380 @@ const App = () => {
                   </ul>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ✨ GENERIC MEDICINES EDUCATION SECTION ✨ */}
+        <section
+          id="generic-info"
+          className="py-20 sm:py-28 bg-gradient-to-b from-white via-blue-50/30 to-white"
+        >
+          <div className="section-container space-y-16">
+            {/* Header */}
+            <div className="space-y-4 max-w-3xl">
+              <span className="inline-block px-3.5 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase">
+                Understanding Medicines
+              </span>
+              <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
+                What are Generic Medicines?
+              </h2>
+              <p className="text-lg text-slate-600 leading-relaxed">
+                Generic medicines are affordable, high-quality alternatives to
+                branded medicines. Learn why they're equally safe and effective.
+              </p>
+            </div>
+
+            {/* Main Definition Card */}
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div className="space-y-6">
+                <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 shadow-lg">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                    Definition
+                  </h3>
+                  <p className="text-slate-700 leading-relaxed text-lg">
+                    Generic medicines are pharmaceutical drugs produced and
+                    distributed without brand names. They contain the
+                    <span className="font-bold text-blue-600">
+                      {" "}
+                      exact same active ingredient
+                    </span>
+                    , strength, and dosage as branded medicines but are sold at
+                    significantly lower prices.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex gap-4 p-5 rounded-xl bg-white border-2 border-emerald-200 shadow-md">
+                    <span className="text-3xl flex-shrink-0">🎯</span>
+                    <div>
+                      <h4 className="font-bold text-slate-900 mb-1">
+                        Same Active Ingredient
+                      </h4>
+                      <p className="text-sm text-slate-600">
+                        Same chemical composition as branded drugs
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4 p-5 rounded-xl bg-white border-2 border-emerald-200 shadow-md">
+                    <span className="text-3xl flex-shrink-0">✅</span>
+                    <div>
+                      <h4 className="font-bold text-slate-900 mb-1">
+                        FDA & WHO Approved
+                      </h4>
+                      <p className="text-sm text-slate-600">
+                        Same quality standards as branded medicines
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4 p-5 rounded-xl bg-white border-2 border-emerald-200 shadow-md">
+                    <span className="text-3xl flex-shrink-0">💰</span>
+                    <div>
+                      <h4 className="font-bold text-slate-900 mb-1">
+                        50-90% Cheaper
+                      </h4>
+                      <p className="text-sm text-slate-600">
+                        No marketing or advertising costs
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative">
+                <div className="absolute -right-8 -top-8 w-40 h-40 bg-gradient-to-br from-blue-200/30 to-indigo-200/30 rounded-full blur-2xl" />
+                <div className="relative bg-white rounded-2xl border-2 border-blue-100 shadow-2xl p-8 space-y-6">
+                  <h3 className="text-2xl font-bold text-slate-900">
+                    Branded vs Generic
+                  </h3>
+
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="h-10 w-10 rounded-full bg-red-100 flex items-center justify-center text-lg">
+                          🏷️
+                        </div>
+                        <h4 className="font-bold text-slate-900">Branded</h4>
+                      </div>
+                      <ul className="space-y-2 text-sm text-slate-600 ml-13">
+                        <li>✓ Expensive packaging</li>
+                        <li>✓ Heavy advertising costs</li>
+                        <li>✓ Premium pricing</li>
+                        <li>✓ Same active ingredient</li>
+                      </ul>
+                    </div>
+
+                    <div className="border-t-2 border-blue-100 pt-4">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-lg">
+                          💚
+                        </div>
+                        <h4 className="font-bold text-slate-900">Generic</h4>
+                      </div>
+                      <ul className="space-y-2 text-sm text-slate-600 ml-13">
+                        <li>✓ Simple, basic packaging</li>
+                        <li>✓ Minimal advertising</li>
+                        <li>✓ Affordable pricing</li>
+                        <li>✓ Same active ingredient</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200">
+                    <p className="text-sm font-semibold text-green-800">
+                      💡 The only difference is the price, not the quality!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Benefits Section */}
+            <div className="space-y-8">
+              <h3 className="text-3xl sm:text-4xl font-bold text-slate-900">
+                Key Benefits of Generic Medicines
+              </h3>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  {
+                    icon: "💸",
+                    title: "Huge Cost Savings",
+                    desc: "Save 50-90% on your monthly medicine expenses. Your family budget benefits immediately.",
+                  },
+                  {
+                    icon: "🏥",
+                    title: "Same Effectiveness",
+                    desc: "Contains identical active ingredients. Works exactly the same way as branded medicines.",
+                  },
+                  {
+                    icon: "✅",
+                    title: "Quality Certified",
+                    desc: "Approved by WHO, FDA, and BPPI. Meets highest pharmaceutical standards globally.",
+                  },
+                  {
+                    icon: "⏱️",
+                    title: "Fast Relief",
+                    desc: "Starts working at the same speed. Same strength, same dosage as branded versions.",
+                  },
+                  {
+                    icon: "🌍",
+                    title: "Accessible Healthcare",
+                    desc: "Makes essential medicines affordable for all families, rich and poor alike.",
+                  },
+                  {
+                    icon: "📊",
+                    title: "Better Compliance",
+                    desc: "Lower cost means patients can afford full treatment. Better health outcomes overall.",
+                  },
+                ].map((benefit, idx) => (
+                  <div
+                    key={idx}
+                    className="group p-6 rounded-xl bg-white border-2 border-blue-100 hover:border-blue-300 hover:shadow-lg transition-all duration-300"
+                  >
+                    <div className="text-4xl mb-4">{benefit.icon}</div>
+                    <h4 className="font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      {benefit.title}
+                    </h4>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      {benefit.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Why Are They Cheaper */}
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div className="space-y-6">
+                <h3 className="text-3xl font-bold text-slate-900">
+                  Why Are Generic Medicines So Cheap?
+                </h3>
+
+                <div className="space-y-4">
+                  <div className="p-5 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200">
+                    <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                      <span className="text-xl">1️⃣</span> No Research Costs
+                    </h4>
+                    <p className="text-sm text-slate-700">
+                      Branded companies spend billions on research &
+                      development. Generic makers skip this, using proven
+                      formulas.
+                    </p>
+                  </div>
+
+                  <div className="p-5 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200">
+                    <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                      <span className="text-xl">2️⃣</span> No Advertising
+                    </h4>
+                    <p className="text-sm text-slate-700">
+                      No TV ads, celebrity endorsements, or fancy packaging.
+                      Generic makers save on marketing entirely.
+                    </p>
+                  </div>
+
+                  <div className="p-5 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200">
+                    <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                      <span className="text-xl">3️⃣</span> Simple Packaging
+                    </h4>
+                    <p className="text-sm text-slate-700">
+                      Basic packaging and labels. Money is saved here and passed
+                      directly to customers.
+                    </p>
+                  </div>
+
+                  <div className="p-5 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200">
+                    <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                      <span className="text-xl">4️⃣</span> Competition
+                    </h4>
+                    <p className="text-sm text-slate-700">
+                      Multiple generic makers produce the same medicine, driving
+                      prices down through competition.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative">
+                <div className="absolute -left-8 -bottom-8 w-40 h-40 bg-gradient-to-tr from-indigo-200/30 to-blue-200/30 rounded-full blur-2xl" />
+                <div className="relative bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl border-2 border-blue-200 p-8 shadow-lg">
+                  <h4 className="text-2xl font-bold text-slate-900 mb-6">
+                    Cost Breakdown
+                  </h4>
+
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="font-semibold text-slate-700">
+                          Branded Medicine
+                        </span>
+                        <span className="text-lg font-bold text-slate-900">
+                          ₹500
+                        </span>
+                      </div>
+                      <div className="w-full bg-slate-300 rounded-full h-3">
+                        <div className="bg-red-500 h-3 rounded-full w-full flex items-center justify-end pr-2">
+                          <span className="text-xs text-white font-bold">
+                            100%
+                          </span>
+                        </div>
+                      </div>
+                      <div className="text-xs text-slate-600 mt-2 space-y-1">
+                        <p>- Medicine: ₹50</p>
+                        <p>- Research: ₹150</p>
+                        <p>- Marketing: ₹200</p>
+                        <p>- Profit: ₹100</p>
+                      </div>
+                    </div>
+
+                    <div className="border-t-2 border-blue-200 pt-6">
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="font-semibold text-slate-700">
+                            Generic Medicine
+                          </span>
+                          <span className="text-lg font-bold text-green-600">
+                            ₹50
+                          </span>
+                        </div>
+                        <div className="w-full bg-slate-300 rounded-full h-3">
+                          <div className="bg-green-500 h-3 rounded-full w-[10%]" />
+                        </div>
+                        <div className="text-xs text-slate-600 mt-2 space-y-1">
+                          <p>- Medicine: ₹40</p>
+                          <p>- Packaging: ₹5</p>
+                          <p>- Profit: ₹5</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 p-4 rounded-xl bg-green-100 border border-green-300">
+                    <p className="text-sm font-bold text-green-800">
+                      🎉 You save ₹450 per medicine with generics!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* FAQ Section */}
+            <div className="space-y-6">
+              <h3 className="text-3xl font-bold text-slate-900">
+                Common Questions About Generic Medicines
+              </h3>
+
+              <div className="grid gap-6">
+                {[
+                  {
+                    q: "Are generic medicines as effective as branded medicines?",
+                    a: "Yes, absolutely! Generic medicines contain the exact same active ingredient in the same strength. They work identically to branded medicines.",
+                  },
+                  {
+                    q: "Are generic medicines safe?",
+                    a: "Yes, they are completely safe. Generic medicines are approved by WHO, FDA, and Indian pharmaceutical regulatory bodies (BPPI). They undergo the same strict quality tests.",
+                  },
+                  {
+                    q: "Why do doctors prescribe branded medicines if generics are the same?",
+                    a: "Many doctors are aware and do prescribe generics. Patients can also ask their doctor or pharmacist for the generic version of any medicine.",
+                  },
+                  {
+                    q: "What if I'm allergic to a branded medicine - will I be allergic to the generic too?",
+                    a: "If you're allergic to the active ingredient, yes. But generics use the same ingredient. The difference is only in fillers/binders, which are usually similar.",
+                  },
+                  {
+                    q: "How much can I save by using generic medicines?",
+                    a: "Savings vary, but typically 50-90% per medicine. For a family taking multiple medicines, the monthly savings can be ₹2,000 to ₹10,000+.",
+                  },
+                  {
+                    q: "Can I switch from branded to generic medicine midway through treatment?",
+                    a: "Yes, you can. Consult your doctor or pharmacist. Since the active ingredient is identical, there's no harm in switching.",
+                  },
+                ].map((faq, idx) => (
+                  <div
+                    key={idx}
+                    className="p-6 rounded-xl bg-white border-2 border-blue-100 hover:border-blue-300 shadow-md hover:shadow-lg transition-all"
+                  >
+                    <h4 className="font-bold text-slate-900 mb-3 text-lg flex items-start gap-3">
+                      <span className="text-blue-600 font-bold text-xl">
+                        Q.
+                      </span>
+                      {faq.q}
+                    </h4>
+                    <p className="text-slate-700 leading-relaxed pl-8 text-base">
+                      <span className="font-bold text-green-600">Ans: </span>
+                      {faq.a}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA Section */}
+            <div className="mt-12 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 p-8 sm:p-12 text-white shadow-2xl">
+              <div className="text-center space-y-4 max-w-2xl mx-auto">
+                <h3 className="text-3xl sm:text-4xl font-bold">
+                  Start Saving Today!
+                </h3>
+                <p className="text-lg opacity-90">
+                  Switch to generic medicines and save 50-90% on your monthly
+                  medicine expenses. Your health, your choice, your savings!
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
+                  <a
+                    href="tel:+919835123889"
+                    className="px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  >
+                    📞 Call Us Now
+                  </a>
+                  <button
+                    onClick={() => scrollToSection("contact")}
+                    className="px-8 py-4 bg-white/20 border-2 border-white text-white font-bold rounded-xl hover:bg-white/30 transition-all duration-300"
+                  >
+                    📝 Send Enquiry
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
