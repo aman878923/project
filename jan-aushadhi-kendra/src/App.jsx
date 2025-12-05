@@ -1,13 +1,431 @@
 import React, { useState } from "react";
 
+// Translation Dictionary
+const translations = {
+  en: {
+    topBar: "Premium Generic Medicines - Your Trust, Our Priority",
+    phone: "📞 +91-98351 23889",
+    available: "🕒 24/7 Available",
+    home: "Home",
+    about: "About",
+    services: "Services",
+    genericInfo: "Generic Info",
+    whyUs: "Why Us",
+    visit: "Visit",
+    contact: "Contact",
+    callUs: "Call Us",
+    trustedHealthcare: "✨ Trusted Healthcare",
+    qualityMedicines: "Quality Medicines at",
+    unbeatable: "Unbeatable Prices",
+    heroDesc:
+      "Save up to 90% on your medicines through India's official PMBJP program. Same quality, guaranteed safety, affordable for everyone.",
+    callNow: "📞 Call Now",
+    findUs: "📍 Find Us",
+    savings: "Savings",
+    savingsPct: "50-90%",
+    status: "Status",
+    statusOpen: "🟢 Open",
+    hours: "Hours",
+    hours24: "24/7",
+    storeInfo: "Store Info",
+    govCertified: "Government Certified Pharmacy",
+    address: "Address",
+    addressValue: "Gola Rd, Ramgarh Cantonment, Jharkhand 829122",
+    contactLabel: "Contact",
+    contactValue: "+91-98351 23889",
+    email: "Email",
+    emailValue: "nandlalrg1947@gmail.com",
+    openNow: "Open Now",
+    openTime: "8:00 AM - 10:00 PM",
+    weProvide: "We Provide",
+    genericMedicines: "Generic Medicines",
+    otcProducts: "OTC Products",
+    surgicalItems: "Surgical Items",
+    wellness: "Wellness",
+    aboutUs: "About Us",
+    affordableHealthcare: "Affordable Healthcare for All",
+    janAushadhi:
+      "Jan Aushadhi Kendra is a government-supported pharmacy under the Pradhan Mantri Bhartiya Janaushadhi Pariyojana, making quality generic medicines accessible to everyone.",
+    genericMedicinesDesc:
+      "Generic medicines have the same quality, safety, and efficacy as branded drugs but cost 50-90% less. We ensure every family gets essential medicines without financial burden.",
+    savingsCalculated: "*Savings calculated against branded MRP",
+    affordable: "Affordable",
+    affordableDesc: "50-90% lower prices vs branded medicines",
+    qualityAssured: "Quality Assured",
+    qualityAssuredDesc: "Certified by BPPI with strict standards",
+    wideRange: "Wide Range",
+    wideRangeDesc: "Chronic, acute, OTC & wellness products",
+    forEveryone: "For Everyone",
+    forEveryoneDesc: "Serving all ages with care & expertise",
+    servicesLabel: "Services",
+    whatWeOffer: "What We Offer",
+    genericMedicinesTitle: "Generic Medicines",
+    genericMedicinesSubDesc: "High-quality branded alternatives",
+    otcWellness: "OTC & Wellness",
+    otcWellnessDesc: "Daily healthcare essentials",
+    surgicalItemsTitle: "Surgical Items",
+    surgicalItemsDesc: "Medical home-care products",
+    patientSupport: "Patient Support",
+    patientSupportDesc: "Expert medicine guidance",
+    chronicCare: "Chronic Care",
+    chronicCareDesc: "Long-term patient support",
+    specialOrders: "Special Orders",
+    specialOrdersDesc: "Custom medicine sourcing",
+    understandingMedicines: "Understanding Medicines",
+    whatAreGeneric: "What are Generic Medicines?",
+    genericDesc:
+      "Generic medicines are affordable, high-quality alternatives to branded medicines. Learn why they're equally safe and effective.",
+    definition: "Definition",
+    definitionText:
+      "Generic medicines are pharmaceutical drugs produced and distributed without brand names. They contain the exact same active ingredient, strength, and dosage as branded medicines but are sold at significantly lower prices.",
+    sameActiveIngredient: "Same Active Ingredient",
+    sameActiveIngredientDesc: "Same chemical composition as branded drugs",
+    fdaApproved: "FDA & WHO Approved",
+    fdaApprovedDesc: "Same quality standards as branded medicines",
+    cheaper: "50-90% Cheaper",
+    cheaperDesc: "No marketing or advertising costs",
+    brandedVsGeneric: "Branded vs Generic",
+    branded: "Branded",
+    generic: "Generic",
+    expensivePackaging: "✓ Expensive packaging",
+    heavyAdvertising: "✓ Heavy advertising costs",
+    premiumPricing: "✓ Premium pricing",
+    sameIngredient: "✓ Same active ingredient",
+    simplePackaging: "✓ Simple, basic packaging",
+    minimalAdvertising: "✓ Minimal advertising",
+    affordablePricing: "✓ Affordable pricing",
+    onlyDifference: "💡 The only difference is the price, not the quality!",
+    keyBenefits: "Key Benefits of Generic Medicines",
+    hugeSavings: "Huge Cost Savings",
+    hugeSavingsDesc:
+      "Save 50-90% on your monthly medicine expenses. Your family budget benefits immediately.",
+    sameEffectiveness: "Same Effectiveness",
+    sameEffectivenessDesc:
+      "Contains identical active ingredients. Works exactly the same way as branded medicines.",
+    qualityCertified: "Quality Certified",
+    qualityCertifiedDesc:
+      "Approved by WHO, FDA, and BPPI. Meets highest pharmaceutical standards globally.",
+    fastRelief: "Fast Relief",
+    fastReliefDesc:
+      "Starts working at the same speed. Same strength, same dosage as branded versions.",
+    accessibleHealthcare: "Accessible Healthcare",
+    accessibleHealthcareDesc:
+      "Makes essential medicines affordable for all families, rich and poor alike.",
+    betterCompliance: "Better Compliance",
+    betterComplianceDesc:
+      "Lower cost means patients can afford full treatment. Better health outcomes overall.",
+    whyCheap: "Why Are Generic Medicines So Cheap?",
+    noResearch: "No Research Costs",
+    noResearchDesc:
+      "Branded companies spend billions on research & development. Generic makers skip this, using proven formulas.",
+    noAdvertising: "No Advertising",
+    noAdvertisingDesc:
+      "No TV ads, celebrity endorsements, or fancy packaging. Generic makers save on marketing entirely.",
+    simplePackagingTitle: "Simple Packaging",
+    simplePackagingDesc:
+      "Basic packaging and labels. Money is saved here and passed directly to customers.",
+    competition: "Competition",
+    competitionDesc:
+      "Multiple generic makers produce the same medicine, driving prices down through competition.",
+    costBreakdown: "Cost Breakdown",
+    brandedMedicine: "Branded Medicine",
+    genericMedicine: "Generic Medicine",
+    medicine: "Medicine",
+    research: "Research",
+    marketing: "Marketing",
+    profit: "Profit",
+    youSave: "🎉 You save ₹450 per medicine with generics!",
+    commonQuestions: "Common Questions About Generic Medicines",
+    q1: "Are generic medicines as effective as branded medicines?",
+    a1: "Yes, absolutely! Generic medicines contain the exact same active ingredient in the same strength. They work identically to branded medicines.",
+    q2: "Are generic medicines safe?",
+    a2: "Yes, they are completely safe. Generic medicines are approved by WHO, FDA, and Indian pharmaceutical regulatory bodies (BPPI). They undergo the same strict quality tests.",
+    q3: "Why do doctors prescribe branded medicines if generics are the same?",
+    a3: "Many doctors are aware and do prescribe generics. Patients can also ask their doctor or pharmacist for the generic version of any medicine.",
+    q4: "What if I'm allergic to a branded medicine - will I be allergic to the generic too?",
+    a4: "If you're allergic to the active ingredient, yes. But generics use the same ingredient. The difference is only in fillers/binders, which are usually similar.",
+    q5: "How much can I save by using generic medicines?",
+    a5: "Savings vary, but typically 50-90% per medicine. For a family taking multiple medicines, the monthly savings can be ₹2,000 to ₹10,000+.",
+    q6: "Can I switch from branded to generic medicine midway through treatment?",
+    a6: "Yes, you can. Consult your doctor or pharmacist. Since the active ingredient is identical, there's no harm in switching.",
+    startSaving: "Start Saving Today!",
+    startSavingDesc:
+      "Switch to generic medicines and save 50-90% on your monthly medicine expenses. Your health, your choice, your savings!",
+    whyChooseUs: "Real Benefits for You",
+    saveMoney: "💰 Save Money",
+    saveMoneyDesc: "Cut medical expenses by up to 90%",
+    transparent: "📋 Transparent",
+    transparentDesc: "Clear billing, full medicine details",
+    govBacked: "🏛️ Govt Backed",
+    govBackedDesc: "Official PMBJP initiative by India",
+    friendly: "😊 Friendly",
+    friendlyDesc: "Warm, respectful expert service",
+    visitOurStore: "Visit Our Store",
+    visitLocation: "8:00 AM – 10:00 PM (All Days)",
+    openMaps: "Open in Google Maps",
+    getInTouch: "Get in Touch",
+    questionsDesc:
+      "Questions about medicines or services? We're here 24/7 to help with friendly, expert guidance.",
+    quickContact: "Quick Contact",
+    name: "Name",
+    yourName: "Your Name",
+    yourPhone: "Phone",
+    yourEmail: "Email",
+    message: "Message",
+    yourMessage: "Your message...",
+    sendMessage: "Send Message",
+    respondTime: "We'll respond within 24 hours",
+    footerDesc:
+      "Government-certified pharmacy providing affordable quality medicines.",
+    footerHours: "Mon - Sun: 8:00 AM – 10:00 PM",
+    footerContact: "📞 +91-98351 23889",
+    copyright: `© ${new Date().getFullYear()} Jan Aushadhi Kendra. All Rights Reserved.`,
+    pmbjp: "PMBJP | Government of India Initiative",
+    ans: "Ans: ",
+    q: "Q.",
+    cardiac: "Cardiac & Diabetic",
+    antibiotics: "Antibiotics",
+    painRelief: "Pain Relief",
+    feverCold: "Fever & Cold",
+    vitamins: "Vitamins",
+    skinCare: "Skin Care",
+    syringes: "Syringes",
+    bandages: "Bandages",
+    masks: "Masks",
+    counselling: "Counselling",
+    dosageHelp: "Dosage Help",
+    alternatives: "Alternatives",
+    monthlyRefills: "Monthly Refills",
+    bulkOrders: "Bulk Orders",
+    records: "Records",
+    onDemand: "On-Demand",
+    quickDelivery: "Quick Delivery",
+    support: "Support",
+  },
+  hi: {
+    topBar: "प्रीमियम जेनेरिक दवाएं - आपका विश्वास, हमारी प्रतिबद्धता",
+    phone: "📞 +91-98351 23889",
+    available: "🕒 24/7 उपलब्ध",
+    home: "होम",
+    about: "परिचय",
+    services: "सेवाएं",
+    genericInfo: "जेनेरिक जानकारी",
+    whyUs: "क्यों हम",
+    visit: "विज़िट करें",
+    contact: "संपर्क",
+    callUs: "हमें कॉल करें",
+    trustedHealthcare: "✨ विश्वसनीय स्वास्थ्यसेवा",
+    qualityMedicines: "गुणवत्ता वाली दवाएं",
+    unbeatable: "अतुलनीय कीमतों पर",
+    heroDesc:
+      "भारत के आधिकारिक PMBJP प्रोग्राम के माध्यम से अपनी दवाओं पर 90% तक बचाएं। समान गुणवत्ता, गारंटीकृत सुरक्षा, सभी के लिए सस्ती।",
+    callNow: "📞 अभी कॉल करें",
+    findUs: "📍 हमें खोजें",
+    savings: "बचत",
+    savingsPct: "50-90%",
+    status: "स्थिति",
+    statusOpen: "🟢 खुला",
+    hours: "घंटे",
+    hours24: "24/7",
+    storeInfo: "स्टोर जानकारी",
+    govCertified: "सरकार द्वारा प्रमाणित फार्मेसी",
+    address: "पता",
+    addressValue: "गोला रोड, रामगढ़ छावनी, झारखंड 829122",
+    contactLabel: "संपर्क",
+    contactValue: "+91-98351 23889",
+    email: "ईमेल",
+    emailValue: "nandlalrg1947@gmail.com",
+    openNow: "अभी खुला है",
+    openTime: "सुबह 8:00 - रात 10:00",
+    weProvide: "हम प्रदान करते हैं",
+    genericMedicines: "जेनेरिक दवाएं",
+    otcProducts: "OTC उत्पाद",
+    surgicalItems: "सर्जिकल वस्तुएं",
+    wellness: "कल्याण",
+    aboutUs: "हमारे बारे में",
+    affordableHealthcare: "सभी के लिए सस्ती स्वास्थ्यसेवा",
+    janAushadhi:
+      "जन औषधि केंद्र प्रधान मंत्री भारतीय जनऔषधि परियोजना के तहत एक सरकार द्वारा समर्थित फार्मेसी है, जो सभी के लिए गुणवत्ता वाली जेनेरिक दवाएं सुलभ बनाती है।",
+    genericMedicinesDesc:
+      "जेनेरिक दवाओं की गुणवत्ता, सुरक्षा और प्रभावशीलता ब्रांडेड दवाओं के समान है लेकिन कीमत 50-90% कम है। हम सुनिश्चित करते हैं कि हर परिवार को वित्तीय बोझ के बिना आवश्यक दवाएं मिलें।",
+    savingsCalculated: "*बचत ब्रांडेड MRP की तुलना में की गई है",
+    affordable: "सस्ता",
+    affordableDesc: "ब्रांडेड दवाओं की तुलना में 50-90% कम कीमत",
+    qualityAssured: "गुणवत्ता सुनिश्चित",
+    qualityAssuredDesc: "BPPI द्वारा प्रमाणित कड़े मानकों के साथ",
+    wideRange: "विस्तृत श्रृंखला",
+    wideRangeDesc: "पुरानी, तीव्र, OTC और कल्याण उत्पाद",
+    forEveryone: "सभी के लिए",
+    forEveryoneDesc:
+      "सभी उम्र के लोगों को देखभाल और विशेषज्ञता के साथ सेवा देना",
+    servicesLabel: "सेवाएं",
+    whatWeOffer: "हम क्या प्रदान करते हैं",
+    genericMedicinesTitle: "जेनेरिक दवाएं",
+    genericMedicinesSubDesc: "उच्च गुणवत्ता वाले ब्रांडेड विकल्प",
+    otcWellness: "OTC और कल्याण",
+    otcWellnessDesc: "दैनिक स्वास्थ्यसेवा आवश्यकताएं",
+    surgicalItemsTitle: "सर्जिकल वस्तुएं",
+    surgicalItemsDesc: "चिकित्सा गृह देखभाल उत्पाद",
+    patientSupport: "रोगी सहायता",
+    patientSupportDesc: "विशेषज्ञ दवा मार्गदर्शन",
+    chronicCare: "पुरानी देखभाल",
+    chronicCareDesc: "दीर्घकालीन रोगी सहायता",
+    specialOrders: "विशेष ऑर्डर",
+    specialOrdersDesc: "कस्टम दवा सोर्सिंग",
+    understandingMedicines: "दवाओं को समझना",
+    whatAreGeneric: "जेनेरिक दवाएं क्या हैं?",
+    genericDesc:
+      "जेनेरिक दवाएं ब्रांडेड दवाओं के सस्ते और उच्च गुणवत्ता वाले विकल्प हैं। जानें कि वे क्यों समान रूप से सुरक्षित और प्रभावी हैं।",
+    definition: "परिभाषा",
+    definitionText:
+      "जेनेरिक दवाएं ब्रांड नाम के बिना उत्पादित और वितरित फार्मास्यूटिकल ड्रग हैं। उनमें ब्रांडेड दवाओं के समान सक्रिय घटक, ताकत और खुराक होती है लेकिन कीमत में काफी कम होती है।",
+    sameActiveIngredient: "समान सक्रिय घटक",
+    sameActiveIngredientDesc: "ब्रांडेड ड्रग्स के समान रासायनिक संरचना",
+    fdaApproved: "FDA और WHO द्वारा अनुमोदित",
+    fdaApprovedDesc: "ब्रांडेड दवाओं के समान गुणवत्ता मानक",
+    cheaper: "50-90% सस्ता",
+    cheaperDesc: "कोई विपणन या विज्ञापन लागत नहीं",
+    brandedVsGeneric: "ब्रांडेड बनाम जेनेरिक",
+    branded: "ब्रांडेड",
+    generic: "जेनेरिक",
+    expensivePackaging: "✓ महंगी पैकेजिंग",
+    heavyAdvertising: "✓ भारी विज्ञापन लागत",
+    premiumPricing: "✓ प्रीमियम कीमत निर्धारण",
+    sameIngredient: "✓ समान सक्रिय घटक",
+    simplePackaging: "✓ सरल, बुनियादी पैकेजिंग",
+    minimalAdvertising: "✓ न्यूनतम विज्ञापन",
+    affordablePricing: "✓ सस्ती कीमत निर्धारण",
+    onlyDifference: "💡 केवल कीमत में अंतर है, गुणवत्ता में नहीं!",
+    keyBenefits: "जेनेरिक दवाओं के मुख्य लाभ",
+    hugeSavings: "विशाल लागत बचत",
+    hugeSavingsDesc:
+      "अपने मासिक दवा व्यय पर 50-90% बचाएं। आपके परिवार के बजट को तुरंत लाभ मिलता है।",
+    sameEffectiveness: "समान प्रभावशीलता",
+    sameEffectivenessDesc:
+      "समान सक्रिय घटक हैं। ब्रांडेड दवाओं के समान तरीके से काम करता है।",
+    qualityCertified: "गुणवत्ता प्रमाणित",
+    qualityCertifiedDesc:
+      "WHO, FDA और BPPI द्वारा अनुमोदित। विश्वव्यापी सर्वोच्च फार्मास्यूटिकल मानकों को पूरा करता है।",
+    fastRelief: "तेज़ राहत",
+    fastReliefDesc:
+      "समान गति से काम करना शुरू करता है। समान ताकत, समान खुराक ब्रांडेड संस्करण के रूप में।",
+    accessibleHealthcare: "सुलभ स्वास्थ्यसेवा",
+    accessibleHealthcareDesc:
+      "सभी परिवारों, अमीर और गरीब दोनों के लिए आवश्यक दवाएं सस्ती बनाता है।",
+    betterCompliance: "बेहतर अनुपालन",
+    betterComplianceDesc:
+      "कम लागत का मतलब है कि रोगी पूरा उपचार वहन कर सकते हैं। समग्र बेहतर स्वास्थ्य परिणाम।",
+    whyCheap: "जेनेरिक दवाएं इतनी सस्ती क्यों हैं?",
+    noResearch: "कोई शोध लागत नहीं",
+    noResearchDesc:
+      "ब्रांडेड कंपनियां शोध और विकास पर अरबों खर्च करती हैं। जेनेरिक निर्माता इसे छोड़ देते हैं, सिद्ध सूत्र का उपयोग करते हैं।",
+    noAdvertising: "कोई विज्ञापन नहीं",
+    noAdvertisingDesc:
+      "कोई टीवी विज्ञापन, सेलिब्रिटी एंडोर्समेंट या फैंसी पैकेजिंग नहीं। जेनेरिक निर्माता पूरी तरह से विपणन में बचत करते हैं।",
+    simplePackagingTitle: "सरल पैकेजिंग",
+    simplePackagingDesc:
+      "बुनियादी पैकेजिंग और लेबल। यहां पैसा बचाया जाता है और सीधे ग्राहकों को दिया जाता है।",
+    competition: "प्रतियोगिता",
+    competitionDesc:
+      "कई जेनेरिक निर्माता एक ही दवा का उत्पादन करते हैं, प्रतियोगिता के माध्यम से कीमतें नीचे लाते हैं।",
+    costBreakdown: "लागत विभाजन",
+    brandedMedicine: "ब्रांडेड दवा",
+    genericMedicine: "जेनेरिक दवा",
+    medicine: "दवा",
+    research: "शोध",
+    marketing: "विपणन",
+    profit: "लाभ",
+    youSave: "🎉 आप जेनेरिक के साथ प्रति दवा ₹450 बचाते हैं!",
+    commonQuestions: "जेनेरिक दवाओं के बारे में आम सवाल",
+    q1: "क्या जेनेरिक दवाएं ब्रांडेड दवाओं जितनी प्रभावी हैं?",
+    a1: "हां, बिल्कुल! जेनेरिक दवाओं में समान ताकत में बिल्कुल समान सक्रिय घटक होता है। वे ब्रांडेड दवाओं के समान काम करते हैं।",
+    q2: "क्या जेनेरिक दवाएं सुरक्षित हैं?",
+    a2: "हां, वे पूरी तरह सुरक्षित हैं। जेनेरिक दवाओं को WHO, FDA और भारतीय फार्मास्यूटिकल नियामक निकायों (BPPI) द्वारा अनुमोदित किया गया है। वे समान कड़े गुणवत्ता परीक्षणों से गुजरते हैं।",
+    q3: "अगर जेनेरिक समान हैं तो डॉक्टर ब्रांडेड दवाएं क्यों देते हैं?",
+    a3: "कई डॉक्टर जानते हैं और जेनेरिक देते हैं। रोगी अपने डॉक्टर या फार्मासिस्ट से किसी भी दवा का जेनेरिक संस्करण मांग सकते हैं।",
+    q4: "अगर मुझे ब्रांडेड दवा से एलर्जी है तो क्या मुझे जेनेरिक से भी एलर्जी होगी?",
+    a4: "यदि आप सक्रिय घटक से एलर्जी हैं, हां। लेकिन जेनेरिक्स समान घटक का उपयोग करते हैं। अंतर केवल fillers/binders में है, जो आमतौर पर समान होते हैं।",
+    q5: "जेनेरिक दवाओं का उपयोग करके मैं कितना बचा सकता हूं?",
+    a5: "बचत अलग-अलग होती है, लेकिन आमतौर पर प्रति दवा 50-90%। परिवार के लिए कई दवाएं लेते हुए, मासिक बचत ₹2,000 से ₹10,000+ हो सकती है।",
+    q6: "क्या मैं इलाज के बीच में ब्रांडेड से जेनेरिक दवा में स्विच कर सकता हूं?",
+    a6: "हां, आप कर सकते हैं। अपने डॉक्टर या फार्मासिस्ट से परामर्श लें। चूंकि सक्रिय घटक समान है, स्विच करने में कोई हानि नहीं है।",
+    startSaving: "आज से बचत शुरू करें!",
+    startSavingDesc:
+      "जेनेरिक दवाओं पर स्विच करें और अपने मासिक दवा व्यय पर 50-90% बचाएं। आपका स्वास्थ्य, आपकी पसंद, आपकी बचत!",
+    whyChooseUs: "आपके लिए वास्तविक लाभ",
+    saveMoney: "💰 पैसा बचाएं",
+    saveMoneyDesc: "चिकित्सा व्यय को 90% तक कम करें",
+    transparent: "📋 पारदर्शी",
+    transparentDesc: "स्पष्ट बिलिंग, संपूर्ण दवा विवरण",
+    govBacked: "🏛️ सरकार द्वारा समर्थित",
+    govBackedDesc: "भारत की आधिकारिक PMBJP पहल",
+    friendly: "😊 दोस्ताना",
+    friendlyDesc: "गर्म, सम्मानजनक विशेषज्ञ सेवा",
+    visitOurStore: "हमारे स्टोर पर जाएं",
+    visitLocation: "सुबह 8:00 - रात 10:00 (सभी दिन)",
+    openMaps: "गूगल मैप्स में खोलें",
+    getInTouch: "संपर्क में रहें",
+    questionsDesc:
+      "दवाओं या सेवाओं के बारे में प्रश्न? हम दोस्ताना, विशेषज्ञ मार्गदर्शन के साथ 24/7 मदद करने के लिए यहां हैं।",
+    quickContact: "त्वरित संपर्क",
+    name: "नाम",
+    yourName: "आपका नाम",
+    yourPhone: "फोन",
+    yourEmail: "ईमेल",
+    message: "संदेश",
+    yourMessage: "आपका संदेश...",
+    sendMessage: "संदेश भेजें",
+    respondTime: "हम 24 घंटे में जवाब देंगे",
+    footerDesc:
+      "सरकार द्वारा प्रमाणित फार्मेसी गुणवत्ता वाली सस्ती दवाएं प्रदान करती है।",
+    footerHours: "सोमवार - रविवार: सुबह 8:00 - रात 10:00",
+    footerContact: "📞 +91-98351 23889",
+    copyright: `© ${new Date().getFullYear()} जन औषधि केंद्र। सर्वाधिकार सुरक्षित।`,
+    pmbjp: "PMBJP | भारत सरकार की पहल",
+    ans: "उत्तर: ",
+    q: "प्रश्न.",
+    cardiac: "कार्डिएक और मधुमेह",
+    antibiotics: "एंटीबायोटिक्स",
+    painRelief: "दर्द निवारक",
+    feverCold: "बुखार और सर्दी",
+    vitamins: "विटामिन",
+    skinCare: "त्वचा देखभाल",
+    syringes: "सीरिंज",
+    bandages: "पट्टियां",
+    masks: "मास्क",
+    counselling: "परामर्श",
+    dosageHelp: "खुराक सहायता",
+    alternatives: "विकल्प",
+    monthlyRefills: "मासिक रिफिल",
+    bulkOrders: "बल्क ऑर्डर",
+    records: "रिकॉर्ड",
+    onDemand: "मांग पर",
+    quickDelivery: "तेज़ डिलीवरी",
+    support: "सहायता",
+  },
+};
+
 const App = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [language, setLanguage] = useState("en");
+
+  const t = (key) => translations[language][key] || key;
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     setMobileMenuOpen(false);
   };
+
+  const navItems = [
+    [language === "en" ? "Home" : "होम", "hero"],
+    [language === "en" ? "About" : "परिचय", "about"],
+    [language === "en" ? "Services" : "सेवाएं", "medicines"],
+    [language === "en" ? "Generic Info" : "जेनेरिक जानकारी", "generic-info"],
+    [language === "en" ? "Why Us" : "क्यों हम", "benefits"],
+    [language === "en" ? "Visit" : "विज़िट करें", "location"],
+    [language === "en" ? "Contact" : "संपर्क", "contact"],
+  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-blue-50/30 to-white font-sans">
@@ -18,19 +436,17 @@ const App = () => {
             <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/30 text-[12px] font-bold backdrop-blur shadow">
               ✓
             </span>
-            <span className="font-semibold tracking-wide">
-              Premium Generic Medicines - Your Trust, Our Priority
-            </span>
+            <span className="font-semibold tracking-wide">{t("topBar")}</span>
           </p>
           <div className="flex gap-6 text-sm">
             <a
               href="tel:+919835123889"
               className="hover:text-blue-200 transition-colors font-semibold"
             >
-              📞 +91-98351 23889
+              {t("phone")}
             </a>
             <span className="hidden sm:inline font-semibold">
-              🕒 24/7 Available
+              {t("available")}
             </span>
           </div>
         </div>
@@ -56,15 +472,7 @@ const App = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
-            {[
-              ["Home", "hero"],
-              ["About", "about"],
-              ["Services", "medicines"],
-              ["Generic Info", "generic-info"],
-              ["Why Us", "benefits"],
-              ["Visit", "location"],
-              ["Contact", "contact"],
-            ].map(([label, id]) => (
+            {navItems.map(([label, id]) => (
               <button
                 key={id}
                 onClick={() => scrollToSection(id)}
@@ -75,12 +483,36 @@ const App = () => {
             ))}
           </nav>
 
+          {/* Language Switcher */}
+          <div className="hidden md:flex items-center gap-2 mx-4">
+            <button
+              onClick={() => setLanguage("en")}
+              className={`px-3 py-1.5 rounded-lg font-bold text-sm transition-all ${
+                language === "en"
+                  ? "bg-blue-700 text-white shadow-md"
+                  : "bg-blue-100 text-blue-700 hover:bg-blue-200"
+              }`}
+            >
+              EN
+            </button>
+            <button
+              onClick={() => setLanguage("hi")}
+              className={`px-3 py-1.5 rounded-lg font-bold text-sm transition-all ${
+                language === "hi"
+                  ? "bg-blue-700 text-white shadow-md"
+                  : "bg-blue-100 text-blue-700 hover:bg-blue-200"
+              }`}
+            >
+              HI
+            </button>
+          </div>
+
           {/* CTA Button */}
           <a
             href="tel:+919835123889"
             className="hidden sm:inline-flex px-6 py-2 bg-gradient-to-r from-blue-700 to-indigo-700 text-white text-base font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
           >
-            Call Us
+            {t("callUs")}
           </a>
 
           {/* Mobile Menu Button */}
@@ -108,15 +540,7 @@ const App = () => {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-blue-100/30 bg-white/98 backdrop-blur shadow-lg">
             <nav className="section-container py-4 space-y-2">
-              {[
-                ["Home", "hero"],
-                ["About", "about"],
-                ["Services", "medicines"],
-                ["Generic Info", "generic-info"],
-                ["Why Us", "benefits"],
-                ["Visit", "location"],
-                ["Contact", "contact"],
-              ].map(([label, id]) => (
+              {navItems.map(([label, id]) => (
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
@@ -125,6 +549,28 @@ const App = () => {
                   {label}
                 </button>
               ))}
+              <div className="flex gap-2 px-4 py-3 border-t border-blue-100/30 mt-2">
+                <button
+                  onClick={() => setLanguage("en")}
+                  className={`flex-1 px-3 py-2 rounded-lg font-bold text-sm transition-all ${
+                    language === "en"
+                      ? "bg-blue-700 text-white"
+                      : "bg-blue-100 text-blue-700 hover:bg-blue-200"
+                  }`}
+                >
+                  English
+                </button>
+                <button
+                  onClick={() => setLanguage("hi")}
+                  className={`flex-1 px-3 py-2 rounded-lg font-bold text-sm transition-all ${
+                    language === "hi"
+                      ? "bg-blue-700 text-white"
+                      : "bg-blue-100 text-blue-700 hover:bg-blue-200"
+                  }`}
+                >
+                  हिंदी
+                </button>
+              </div>
             </nav>
           </div>
         )}
@@ -145,20 +591,18 @@ const App = () => {
             <div className="space-y-8">
               <div className="space-y-4">
                 <span className="inline-block px-3.5 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase">
-                  ✨ Trusted Healthcare
+                  {t("trustedHealthcare")}
                 </span>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 leading-tight">
-                  Quality Medicines at
+                  {t("qualityMedicines")}
                   <span className="block mt-2 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                    Unbeatable Prices
+                    {t("unbeatable")}
                   </span>
                 </h1>
               </div>
 
               <p className="text-lg text-slate-700 leading-relaxed max-w-lg font-medium">
-                Save up to 90% on your medicines through India's official{" "}
-                <span className="text-blue-600 font-bold">PMBJP</span> program.
-                Same quality, guaranteed safety, affordable for everyone.
+                {t("heroDesc")}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -166,13 +610,13 @@ const App = () => {
                   href="tel:+919835123889"
                   className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 text-center"
                 >
-                  📞 Call Now
+                  {t("callNow")}
                 </a>
                 <button
                   onClick={() => scrollToSection("location")}
                   className="px-8 py-4 border-2 border-blue-600 text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300 flex items-center justify-center gap-2"
                 >
-                  📍 Find Us
+                  {t("findUs")}
                 </button>
               </div>
 
@@ -180,21 +624,27 @@ const App = () => {
               <div className="grid sm:grid-cols-3 gap-4 pt-6">
                 <div className="p-4 rounded-xl bg-white border border-blue-100/50 shadow-sm">
                   <p className="text-xs text-slate-600 font-semibold uppercase mb-1">
-                    Savings
+                    {t("savings")}
                   </p>
-                  <p className="text-2xl font-bold text-blue-600">50-90%</p>
+                  <p className="text-2xl font-bold text-blue-600">
+                    {t("savingsPct")}
+                  </p>
                 </div>
                 <div className="p-4 rounded-xl bg-white border border-blue-100/50 shadow-sm">
                   <p className="text-xs text-slate-600 font-semibold uppercase mb-1">
-                    Status
+                    {t("status")}
                   </p>
-                  <p className="text-2xl font-bold text-blue-600">🟢 Open</p>
+                  <p className="text-2xl font-bold text-blue-600">
+                    {t("statusOpen")}
+                  </p>
                 </div>
                 <div className="p-4 rounded-xl bg-white border border-blue-100/50 shadow-sm">
                   <p className="text-xs text-slate-600 font-semibold uppercase mb-1">
-                    Hours
+                    {t("hours")}
                   </p>
-                  <p className="text-2xl font-bold text-blue-600">24/7</p>
+                  <p className="text-2xl font-bold text-blue-600">
+                    {t("hours24")}
+                  </p>
                 </div>
               </div>
             </div>
@@ -207,11 +657,9 @@ const App = () => {
               <div className="relative bg-white/70 backdrop-blur-xl border border-blue-100/50 rounded-2xl shadow-2xl p-8 space-y-6">
                 <div className="space-y-3 pb-6 border-b border-blue-100/30">
                   <h3 className="text-2xl font-bold text-slate-900">
-                    Store Info
+                    {t("storeInfo")}
                   </h3>
-                  <p className="text-sm text-slate-600">
-                    Government Certified Pharmacy
-                  </p>
+                  <p className="text-sm text-slate-600">{t("govCertified")}</p>
                 </div>
 
                 <div className="space-y-5">
@@ -219,10 +667,10 @@ const App = () => {
                     <span className="text-2xl flex-shrink-0">📍</span>
                     <div className="min-w-0">
                       <p className="text-xs font-bold text-slate-500 uppercase">
-                        Address
+                        {t("address")}
                       </p>
                       <p className="text-sm text-slate-700 font-medium mt-1">
-                        Gola Rd, Ramgarh Cantonment, Jharkhand 829122
+                        {t("addressValue")}
                       </p>
                     </div>
                   </div>
@@ -231,10 +679,10 @@ const App = () => {
                     <span className="text-2xl flex-shrink-0">📞</span>
                     <div>
                       <p className="text-xs font-bold text-slate-500 uppercase">
-                        Contact
+                        {t("contactLabel")}
                       </p>
                       <p className="text-sm text-slate-700 font-medium mt-1">
-                        +91-98351 23889
+                        {t("contactValue")}
                       </p>
                     </div>
                   </div>
@@ -243,10 +691,10 @@ const App = () => {
                     <span className="text-2xl flex-shrink-0">📧</span>
                     <div>
                       <p className="text-xs font-bold text-slate-500 uppercase">
-                        Email
+                        {t("email")}
                       </p>
                       <p className="text-sm text-slate-700 font-medium mt-1">
-                        nandlalrg1947@gmail.com
+                        {t("emailValue")}
                       </p>
                     </div>
                   </div>
@@ -254,14 +702,12 @@ const App = () => {
 
                 <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-4 border border-emerald-200/50">
                   <p className="text-xs font-bold text-emerald-700 mb-2">
-                    STATUS
+                    {t("status")}
                   </p>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-bold text-slate-900">Open Now</p>
-                      <p className="text-xs text-slate-600">
-                        8:00 AM - 10:00 PM
-                      </p>
+                      <p className="font-bold text-slate-900">{t("openNow")}</p>
+                      <p className="text-xs text-slate-600">{t("openTime")}</p>
                     </div>
                     <span className="text-lg">🟢</span>
                   </div>
@@ -269,20 +715,20 @@ const App = () => {
 
                 <div className="space-y-2 pt-2">
                   <p className="text-xs font-bold text-slate-500 uppercase">
-                    We Provide
+                    {t("weProvide")}
                   </p>
                   <div className="grid grid-cols-2 gap-2">
                     <span className="text-xs bg-blue-50 text-blue-700 px-3 py-2 rounded-lg font-semibold">
-                      Generic Medicines
+                      {t("genericMedicines")}
                     </span>
                     <span className="text-xs bg-blue-50 text-blue-700 px-3 py-2 rounded-lg font-semibold">
-                      OTC Products
+                      {t("otcProducts")}
                     </span>
                     <span className="text-xs bg-blue-50 text-blue-700 px-3 py-2 rounded-lg font-semibold">
-                      Surgical Items
+                      {t("surgicalItems")}
                     </span>
                     <span className="text-xs bg-blue-50 text-blue-700 px-3 py-2 rounded-lg font-semibold">
-                      Wellness
+                      {t("wellness")}
                     </span>
                   </div>
                 </div>
@@ -297,64 +743,57 @@ const App = () => {
             <div className="space-y-6">
               <div className="space-y-3">
                 <span className="inline-block px-3.5 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase">
-                  About Us
+                  {t("aboutUs")}
                 </span>
                 <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
-                  Affordable Healthcare for All
+                  {t("affordableHealthcare")}
                 </h2>
               </div>
 
               <div className="space-y-4">
                 <p className="text-lg text-slate-700 leading-relaxed font-medium">
-                  Jan Aushadhi Kendra is a{" "}
-                  <span className="text-blue-600 font-bold">
-                    government-supported pharmacy
-                  </span>{" "}
-                  under the Pradhan Mantri Bhartiya Janaushadhi Pariyojana,
-                  making quality generic medicines accessible to everyone.
+                  {t("janAushadhi")}
                 </p>
                 <p className="text-lg text-slate-700 leading-relaxed">
-                  Generic medicines have the same quality, safety, and efficacy
-                  as branded drugs but cost 50-90% less. We ensure every family
-                  gets essential medicines without financial burden.
+                  {t("genericMedicinesDesc")}
                 </p>
               </div>
 
               <div className="text-sm text-slate-600 italic font-medium pt-4 border-t border-blue-100/50">
-                *Savings calculated against branded MRP
+                {t("savingsCalculated")}
               </div>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="group p-6 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100/50 hover:shadow-lg transition-all duration-300">
                 <p className="text-3xl mb-3">💰</p>
-                <h3 className="font-bold text-slate-900 mb-2">Affordable</h3>
-                <p className="text-sm text-slate-700">
-                  50-90% lower prices vs branded medicines
-                </p>
+                <h3 className="font-bold text-slate-900 mb-2">
+                  {t("affordable")}
+                </h3>
+                <p className="text-sm text-slate-700">{t("affordableDesc")}</p>
               </div>
               <div className="group p-6 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100/50 hover:shadow-lg transition-all duration-300">
                 <p className="text-3xl mb-3">✅</p>
                 <h3 className="font-bold text-slate-900 mb-2">
-                  Quality Assured
+                  {t("qualityAssured")}
                 </h3>
                 <p className="text-sm text-slate-700">
-                  Certified by BPPI with strict standards
+                  {t("qualityAssuredDesc")}
                 </p>
               </div>
               <div className="group p-6 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100/50 hover:shadow-lg transition-all duration-300">
                 <p className="text-3xl mb-3">📦</p>
-                <h3 className="font-bold text-slate-900 mb-2">Wide Range</h3>
-                <p className="text-sm text-slate-700">
-                  Chronic, acute, OTC & wellness products
-                </p>
+                <h3 className="font-bold text-slate-900 mb-2">
+                  {t("wideRange")}
+                </h3>
+                <p className="text-sm text-slate-700">{t("wideRangeDesc")}</p>
               </div>
               <div className="group p-6 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100/50 hover:shadow-lg transition-all duration-300">
                 <p className="text-3xl mb-3">❤️</p>
-                <h3 className="font-bold text-slate-900 mb-2">For Everyone</h3>
-                <p className="text-sm text-slate-700">
-                  Serving all ages with care & expertise
-                </p>
+                <h3 className="font-bold text-slate-900 mb-2">
+                  {t("forEveryone")}
+                </h3>
+                <p className="text-sm text-slate-700">{t("forEveryoneDesc")}</p>
               </div>
             </div>
           </div>
@@ -368,10 +807,10 @@ const App = () => {
           <div className="section-container space-y-16">
             <div className="space-y-4">
               <span className="inline-block px-3.5 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase">
-                Services
+                {t("servicesLabel")}
               </span>
               <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight max-w-2xl">
-                What We Offer
+                {t("whatWeOffer")}
               </h2>
             </div>
 
@@ -379,39 +818,39 @@ const App = () => {
               {[
                 {
                   icon: "💊",
-                  title: "Generic Medicines",
-                  desc: "High-quality branded alternatives",
-                  items: ["Cardiac & Diabetic", "Antibiotics", "Pain Relief"],
+                  titleKey: "genericMedicinesTitle",
+                  descKey: "genericMedicinesSubDesc",
+                  itemKeys: ["cardiac", "antibiotics", "painRelief"],
                 },
                 {
                   icon: "🛒",
-                  title: "OTC & Wellness",
-                  desc: "Daily healthcare essentials",
-                  items: ["Fever & Cold", "Vitamins", "Skin Care"],
+                  titleKey: "otcWellness",
+                  descKey: "otcWellnessDesc",
+                  itemKeys: ["feverCold", "vitamins", "skinCare"],
                 },
                 {
                   icon: "⚕️",
-                  title: "Surgical Items",
-                  desc: "Medical home-care products",
-                  items: ["Syringes", "Bandages", "Masks"],
+                  titleKey: "surgicalItemsTitle",
+                  descKey: "surgicalItemsDesc",
+                  itemKeys: ["syringes", "bandages", "masks"],
                 },
                 {
                   icon: "👨‍⚕️",
-                  title: "Patient Support",
-                  desc: "Expert medicine guidance",
-                  items: ["Counselling", "Dosage Help", "Alternatives"],
+                  titleKey: "patientSupport",
+                  descKey: "patientSupportDesc",
+                  itemKeys: ["counselling", "dosageHelp", "alternatives"],
                 },
                 {
                   icon: "📋",
-                  title: "Chronic Care",
-                  desc: "Long-term patient support",
-                  items: ["Monthly Refills", "Bulk Orders", "Records"],
+                  titleKey: "chronicCare",
+                  descKey: "chronicCareDesc",
+                  itemKeys: ["monthlyRefills", "bulkOrders", "records"],
                 },
                 {
                   icon: "🚚",
-                  title: "Special Orders",
-                  desc: "Custom medicine sourcing",
-                  items: ["On-Demand", "Quick Delivery", "Support"],
+                  titleKey: "specialOrders",
+                  descKey: "specialOrdersDesc",
+                  itemKeys: ["onDemand", "quickDelivery", "support"],
                 },
               ].map((service, idx) => (
                 <div
@@ -420,17 +859,19 @@ const App = () => {
                 >
                   <p className="text-3xl mb-4">{service.icon}</p>
                   <h3 className="font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
-                    {service.title}
+                    {t(service.titleKey)}
                   </h3>
-                  <p className="text-sm text-slate-600 mb-4">{service.desc}</p>
+                  <p className="text-sm text-slate-600 mb-4">
+                    {t(service.descKey)}
+                  </p>
                   <ul className="space-y-2">
-                    {service.items.map((item, i) => (
+                    {service.itemKeys.map((itemKey, i) => (
                       <li
                         key={i}
                         className="text-xs text-slate-600 flex items-center gap-2"
                       >
-                        <span className="text-blue-600 font-bold">•</span>{" "}
-                        {item}
+                        <span className="text-blue-600 font-bold">•</span>
+                        {t(itemKey)}
                       </li>
                     ))}
                   </ul>
@@ -449,14 +890,13 @@ const App = () => {
             {/* Header */}
             <div className="space-y-4 max-w-3xl">
               <span className="inline-block px-3.5 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase">
-                Understanding Medicines
+                {t("understandingMedicines")}
               </span>
               <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
-                What are Generic Medicines?
+                {t("whatAreGeneric")}
               </h2>
               <p className="text-lg text-slate-600 leading-relaxed">
-                Generic medicines are affordable, high-quality alternatives to
-                branded medicines. Learn why they're equally safe and effective.
+                {t("genericDesc")}
               </p>
             </div>
 
@@ -465,17 +905,10 @@ const App = () => {
               <div className="space-y-6">
                 <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 shadow-lg">
                   <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                    Definition
+                    {t("definition")}
                   </h3>
                   <p className="text-slate-700 leading-relaxed text-lg">
-                    Generic medicines are pharmaceutical drugs produced and
-                    distributed without brand names. They contain the
-                    <span className="font-bold text-blue-600">
-                      {" "}
-                      exact same active ingredient
-                    </span>
-                    , strength, and dosage as branded medicines but are sold at
-                    significantly lower prices.
+                    {t("definitionText")}
                   </p>
                 </div>
 
@@ -484,10 +917,10 @@ const App = () => {
                     <span className="text-3xl flex-shrink-0">🎯</span>
                     <div>
                       <h4 className="font-bold text-slate-900 mb-1">
-                        Same Active Ingredient
+                        {t("sameActiveIngredient")}
                       </h4>
                       <p className="text-sm text-slate-600">
-                        Same chemical composition as branded drugs
+                        {t("sameActiveIngredientDesc")}
                       </p>
                     </div>
                   </div>
@@ -495,10 +928,10 @@ const App = () => {
                     <span className="text-3xl flex-shrink-0">✅</span>
                     <div>
                       <h4 className="font-bold text-slate-900 mb-1">
-                        FDA & WHO Approved
+                        {t("fdaApproved")}
                       </h4>
                       <p className="text-sm text-slate-600">
-                        Same quality standards as branded medicines
+                        {t("fdaApprovedDesc")}
                       </p>
                     </div>
                   </div>
@@ -506,10 +939,10 @@ const App = () => {
                     <span className="text-3xl flex-shrink-0">💰</span>
                     <div>
                       <h4 className="font-bold text-slate-900 mb-1">
-                        50-90% Cheaper
+                        {t("cheaper")}
                       </h4>
                       <p className="text-sm text-slate-600">
-                        No marketing or advertising costs
+                        {t("cheaperDesc")}
                       </p>
                     </div>
                   </div>
@@ -520,7 +953,7 @@ const App = () => {
                 <div className="absolute -right-8 -top-8 w-40 h-40 bg-gradient-to-br from-blue-200/30 to-indigo-200/30 rounded-full blur-2xl" />
                 <div className="relative bg-white rounded-2xl border-2 border-blue-100 shadow-2xl p-8 space-y-6">
                   <h3 className="text-2xl font-bold text-slate-900">
-                    Branded vs Generic
+                    {t("brandedVsGeneric")}
                   </h3>
 
                   <div className="space-y-4">
@@ -529,13 +962,15 @@ const App = () => {
                         <div className="h-10 w-10 rounded-full bg-red-100 flex items-center justify-center text-lg">
                           🏷️
                         </div>
-                        <h4 className="font-bold text-slate-900">Branded</h4>
+                        <h4 className="font-bold text-slate-900">
+                          {t("branded")}
+                        </h4>
                       </div>
                       <ul className="space-y-2 text-sm text-slate-600 ml-13">
-                        <li>✓ Expensive packaging</li>
-                        <li>✓ Heavy advertising costs</li>
-                        <li>✓ Premium pricing</li>
-                        <li>✓ Same active ingredient</li>
+                        <li>{t("expensivePackaging")}</li>
+                        <li>{t("heavyAdvertising")}</li>
+                        <li>{t("premiumPricing")}</li>
+                        <li>{t("sameIngredient")}</li>
                       </ul>
                     </div>
 
@@ -544,20 +979,22 @@ const App = () => {
                         <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-lg">
                           💚
                         </div>
-                        <h4 className="font-bold text-slate-900">Generic</h4>
+                        <h4 className="font-bold text-slate-900">
+                          {t("generic")}
+                        </h4>
                       </div>
                       <ul className="space-y-2 text-sm text-slate-600 ml-13">
-                        <li>✓ Simple, basic packaging</li>
-                        <li>✓ Minimal advertising</li>
-                        <li>✓ Affordable pricing</li>
-                        <li>✓ Same active ingredient</li>
+                        <li>{t("simplePackaging")}</li>
+                        <li>{t("minimalAdvertising")}</li>
+                        <li>{t("affordablePricing")}</li>
+                        <li>{t("sameIngredient")}</li>
                       </ul>
                     </div>
                   </div>
 
                   <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200">
                     <p className="text-sm font-semibold text-green-800">
-                      💡 The only difference is the price, not the quality!
+                      {t("onlyDifference")}
                     </p>
                   </div>
                 </div>
@@ -567,7 +1004,7 @@ const App = () => {
             {/* Benefits Section */}
             <div className="space-y-8">
               <h3 className="text-3xl sm:text-4xl font-bold text-slate-900">
-                Key Benefits of Generic Medicines
+                {t("keyBenefits")}
               </h3>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -623,48 +1060,44 @@ const App = () => {
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div className="space-y-6">
                 <h3 className="text-3xl font-bold text-slate-900">
-                  Why Are Generic Medicines So Cheap?
+                  {t("whyCheap")}
                 </h3>
 
                 <div className="space-y-4">
                   <div className="p-5 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200">
                     <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                      <span className="text-xl">1️⃣</span> No Research Costs
+                      <span className="text-xl">1️⃣</span> {t("noResearch")}
                     </h4>
                     <p className="text-sm text-slate-700">
-                      Branded companies spend billions on research &
-                      development. Generic makers skip this, using proven
-                      formulas.
+                      {t("noResearchDesc")}
                     </p>
                   </div>
 
                   <div className="p-5 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200">
                     <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                      <span className="text-xl">2️⃣</span> No Advertising
+                      <span className="text-xl">2️⃣</span> {t("noAdvertising")}
                     </h4>
                     <p className="text-sm text-slate-700">
-                      No TV ads, celebrity endorsements, or fancy packaging.
-                      Generic makers save on marketing entirely.
+                      {t("noAdvertisingDesc")}
                     </p>
                   </div>
 
                   <div className="p-5 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200">
                     <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                      <span className="text-xl">3️⃣</span> Simple Packaging
+                      <span className="text-xl">3️⃣</span>{" "}
+                      {t("simplePackagingTitle")}
                     </h4>
                     <p className="text-sm text-slate-700">
-                      Basic packaging and labels. Money is saved here and passed
-                      directly to customers.
+                      {t("simplePackagingDesc")}
                     </p>
                   </div>
 
                   <div className="p-5 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200">
                     <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                      <span className="text-xl">4️⃣</span> Competition
+                      <span className="text-xl">4️⃣</span> {t("competition")}
                     </h4>
                     <p className="text-sm text-slate-700">
-                      Multiple generic makers produce the same medicine, driving
-                      prices down through competition.
+                      {t("competitionDesc")}
                     </p>
                   </div>
                 </div>
@@ -674,14 +1107,14 @@ const App = () => {
                 <div className="absolute -left-8 -bottom-8 w-40 h-40 bg-gradient-to-tr from-indigo-200/30 to-blue-200/30 rounded-full blur-2xl" />
                 <div className="relative bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl border-2 border-blue-200 p-8 shadow-lg">
                   <h4 className="text-2xl font-bold text-slate-900 mb-6">
-                    Cost Breakdown
+                    {t("costBreakdown")}
                   </h4>
 
                   <div className="space-y-4">
                     <div>
                       <div className="flex justify-between items-center mb-2">
                         <span className="font-semibold text-slate-700">
-                          Branded Medicine
+                          {t("brandedMedicine")}
                         </span>
                         <span className="text-lg font-bold text-slate-900">
                           ₹500
@@ -695,10 +1128,10 @@ const App = () => {
                         </div>
                       </div>
                       <div className="text-xs text-slate-600 mt-2 space-y-1">
-                        <p>- Medicine: ₹50</p>
-                        <p>- Research: ₹150</p>
-                        <p>- Marketing: ₹200</p>
-                        <p>- Profit: ₹100</p>
+                        <p>- {t("medicine")}: ₹50</p>
+                        <p>- {t("research")}: ₹150</p>
+                        <p>- {t("marketing")}: ₹200</p>
+                        <p>- {t("profit")}: ₹100</p>
                       </div>
                     </div>
 
@@ -706,7 +1139,7 @@ const App = () => {
                       <div>
                         <div className="flex justify-between items-center mb-2">
                           <span className="font-semibold text-slate-700">
-                            Generic Medicine
+                            {t("genericMedicine")}
                           </span>
                           <span className="text-lg font-bold text-green-600">
                             ₹50
@@ -716,9 +1149,9 @@ const App = () => {
                           <div className="bg-green-500 h-3 rounded-full w-[10%]" />
                         </div>
                         <div className="text-xs text-slate-600 mt-2 space-y-1">
-                          <p>- Medicine: ₹40</p>
-                          <p>- Packaging: ₹5</p>
-                          <p>- Profit: ₹5</p>
+                          <p>- {t("medicine")}: ₹40</p>
+                          <p>- {t("packaging")}: ₹5</p>
+                          <p>- {t("profit")}: ₹5</p>
                         </div>
                       </div>
                     </div>
@@ -726,7 +1159,7 @@ const App = () => {
 
                   <div className="mt-6 p-4 rounded-xl bg-green-100 border border-green-300">
                     <p className="text-sm font-bold text-green-800">
-                      🎉 You save ₹450 per medicine with generics!
+                      {t("youSave")}
                     </p>
                   </div>
                 </div>
@@ -736,7 +1169,7 @@ const App = () => {
             {/* FAQ Section */}
             <div className="space-y-6">
               <h3 className="text-3xl font-bold text-slate-900">
-                Common Questions About Generic Medicines
+                {t("commonQuestions")}
               </h3>
 
               <div className="grid gap-6">
@@ -772,12 +1205,14 @@ const App = () => {
                   >
                     <h4 className="font-bold text-slate-900 mb-3 text-lg flex items-start gap-3">
                       <span className="text-blue-600 font-bold text-xl">
-                        Q.
+                        {t("q")}
                       </span>
                       {faq.q}
                     </h4>
                     <p className="text-slate-700 leading-relaxed pl-8 text-base">
-                      <span className="font-bold text-green-600">Ans: </span>
+                      <span className="font-bold text-green-600">
+                        {t("ans")}
+                      </span>
                       {faq.a}
                     </p>
                   </div>
@@ -789,24 +1224,21 @@ const App = () => {
             <div className="mt-12 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 p-8 sm:p-12 text-white shadow-2xl">
               <div className="text-center space-y-4 max-w-2xl mx-auto">
                 <h3 className="text-3xl sm:text-4xl font-bold">
-                  Start Saving Today!
+                  {t("startSaving")}
                 </h3>
-                <p className="text-lg opacity-90">
-                  Switch to generic medicines and save 50-90% on your monthly
-                  medicine expenses. Your health, your choice, your savings!
-                </p>
+                <p className="text-lg opacity-90">{t("startSavingDesc")}</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
                   <a
                     href="tel:+919835123889"
                     className="px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
-                    📞 Call Us Now
+                    📞 {t("callUs")} {t("now")}
                   </a>
                   <button
                     onClick={() => scrollToSection("contact")}
                     className="px-8 py-4 bg-white/20 border-2 border-white text-white font-bold rounded-xl hover:bg-white/30 transition-all duration-300"
                   >
-                    📝 Send Enquiry
+                    📝 {t("sendEnquiry")}
                   </button>
                 </div>
               </div>
@@ -819,10 +1251,10 @@ const App = () => {
           <div className="section-container space-y-16">
             <div className="space-y-4">
               <span className="inline-block px-3.5 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase">
-                Why Choose Us
+                {t("whyChooseUs")}
               </span>
               <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
-                Real Benefits for You
+                {t("realBenefits")}
               </h2>
             </div>
 
@@ -870,10 +1302,10 @@ const App = () => {
             <div className="space-y-8">
               <div className="space-y-4">
                 <span className="inline-block px-3.5 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase">
-                  Location
+                  {t("location")}
                 </span>
                 <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
-                  Visit Our Store
+                  {t("visitOurStore")}
                 </h2>
               </div>
 
@@ -921,7 +1353,7 @@ const App = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Open in Google Maps
+                {t("openMaps")}
               </a>
             </div>
 
@@ -943,16 +1375,15 @@ const App = () => {
             <div className="space-y-8">
               <div className="space-y-4">
                 <span className="inline-block px-3.5 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase">
-                  Contact
+                  {t("contact")}
                 </span>
                 <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
-                  Get in Touch
+                  {t("getInTouch")}
                 </h2>
               </div>
 
               <p className="text-lg text-slate-700 leading-relaxed font-medium">
-                Questions about medicines or services? We're here 24/7 to help
-                with friendly, expert guidance.
+                {t("questionsDesc")}
               </p>
 
               <div className="space-y-3">
@@ -991,51 +1422,51 @@ const App = () => {
 
             <div className="p-8 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100/50 shadow-lg">
               <h3 className="text-2xl font-bold text-slate-900 mb-6">
-                Quick Contact
+                {t("quickContact")}
               </h3>
               <form className="space-y-4">
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-2">
-                    Name
+                    {t("name")}
                   </label>
                   <input
                     type="text"
                     className="w-full px-4 py-3 rounded-lg border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all bg-white"
-                    placeholder="Your Name"
+                    placeholder={t("yourName")}
                   />
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">
-                      Phone
+                      {t("phone")}
                     </label>
                     <input
                       type="tel"
                       className="w-full px-4 py-3 rounded-lg border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all bg-white"
-                      placeholder="Phone"
+                      placeholder={t("yourPhone")}
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">
-                      Email
+                      {t("email")}
                     </label>
                     <input
                       type="email"
                       className="w-full px-4 py-3 rounded-lg border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all bg-white"
-                      placeholder="Email"
+                      placeholder={t("yourEmail")}
                     />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-2">
-                    Message
+                    {t("message")}
                   </label>
                   <textarea
                     className="w-full px-4 py-3 rounded-lg border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all bg-white resize-none"
                     rows="4"
-                    placeholder="Your message..."
+                    placeholder={t("yourMessage")}
                   ></textarea>
                 </div>
 
@@ -1043,11 +1474,11 @@ const App = () => {
                   type="button"
                   className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                 >
-                  Send Message
+                  {t("sendMessage")}
                 </button>
 
                 <p className="text-xs text-slate-600 text-center">
-                  We'll respond within 24 hours
+                  {t("respondTime")}
                 </p>
               </form>
             </div>
@@ -1061,28 +1492,22 @@ const App = () => {
           <div>
             <h3 className="font-bold text-lg mb-3">Jan Aushadhi Kendra</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Government-certified pharmacy providing affordable quality
-              medicines.
+              {t("footerDesc")}
             </p>
           </div>
           <div>
-            <h3 className="font-bold text-lg mb-3">Hours</h3>
-            <p className="text-slate-400 text-sm">
-              Mon - Sun: 8:00 AM – 10:00 PM
-            </p>
+            <h3 className="font-bold text-lg mb-3">{t("hours")}</h3>
+            <p className="text-slate-400 text-sm">{t("footerHours")}</p>
           </div>
           <div>
-            <h3 className="font-bold text-lg mb-3">Contact</h3>
-            <p className="text-slate-400 text-sm">📞 +91-98351 23889</p>
+            <h3 className="font-bold text-lg mb-3">{t("contact")}</h3>
+            <p className="text-slate-400 text-sm">{t("footerContact")}</p>
           </div>
         </div>
         <div className="border-t border-slate-700 bg-slate-900/50 backdrop-blur">
           <div className="section-container flex flex-col sm:flex-row items-center justify-between gap-4 py-6 text-sm text-slate-400">
-            <p className="font-medium">
-              © {new Date().getFullYear()} Jan Aushadhi Kendra. All Rights
-              Reserved.
-            </p>
-            <p className="text-xs">PMBJP | Government of India Initiative</p>
+            <p className="font-medium">{t("copyright")}</p>
+            <p className="text-xs">{t("pmbjp")}</p>
           </div>
         </div>
       </footer>
