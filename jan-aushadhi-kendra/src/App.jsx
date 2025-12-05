@@ -10,26 +10,26 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-blue-50/30 to-white">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-blue-50/30 to-white font-sans">
       {/* Top Bar */}
-      <div className="w-full bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white text-xs sm:text-sm shadow-md">
-        <div className="section-container flex flex-col sm:flex-row items-center justify-between gap-3 py-3.5">
+      <div className="w-full bg-gradient-to-r from-blue-700 via-blue-500 to-indigo-700 text-white text-xs sm:text-sm shadow-lg">
+        <div className="section-container flex flex-col sm:flex-row items-center justify-between gap-3 py-4">
           <p className="flex items-center gap-2">
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/25 text-[10px] font-bold backdrop-blur">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/30 text-[12px] font-bold backdrop-blur shadow">
               ✓
             </span>
-            <span className="font-medium">
+            <span className="font-semibold tracking-wide">
               Premium Generic Medicines - Your Trust, Our Priority
             </span>
           </p>
           <div className="flex gap-6 text-sm">
             <a
               href="tel:+919835123889"
-              className="hover:text-blue-100 transition-colors font-medium"
+              className="hover:text-blue-200 transition-colors font-semibold"
             >
               📞 +91-98351 23889
             </a>
-            <span className="hidden sm:inline font-medium">
+            <span className="hidden sm:inline font-semibold">
               🕒 24/7 Available
             </span>
           </div>
@@ -37,25 +37,25 @@ const App = () => {
       </div>
 
       {/* Navbar */}
-      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-blue-100/30 shadow-sm">
-        <div className="section-container flex items-center justify-between py-4">
+      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-blue-100/30 shadow-lg">
+        <div className="section-container flex items-center justify-between py-5">
           {/* Logo */}
-          <div className="flex items-center gap-2.5 cursor-pointer group">
-            <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-white font-bold text-xl shadow-md group-hover:shadow-lg transition-all">
+          <div className="flex items-center gap-3 cursor-pointer group">
+            <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-blue-700 to-indigo-700 text-white font-bold text-2xl shadow-lg group-hover:shadow-xl transition-all">
               Rx
             </div>
             <div>
-              <h1 className="text-sm sm:text-base font-bold text-slate-900">
+              <h1 className="text-base sm:text-lg font-extrabold text-slate-900">
                 Jan Aushadhi
               </h1>
-              <p className="text-[9px] text-blue-600 font-semibold">
+              <p className="text-[10px] text-blue-700 font-semibold">
                 PMBJP Certified
               </p>
             </div>
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-0.5">
+          <nav className="hidden lg:flex items-center gap-1">
             {[
               ["Home", "hero"],
               ["About", "about"],
@@ -68,7 +68,7 @@ const App = () => {
               <button
                 key={id}
                 onClick={() => scrollToSection(id)}
-                className="px-3.5 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
+                className="px-4 py-2 text-base font-semibold text-slate-700 hover:text-blue-700 hover:bg-blue-50/70 rounded-xl transition-all duration-200"
               >
                 {label}
               </button>
@@ -78,7 +78,7 @@ const App = () => {
           {/* CTA Button */}
           <a
             href="tel:+919835123889"
-            className="hidden sm:inline-flex px-5 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200"
+            className="hidden sm:inline-flex px-6 py-2 bg-gradient-to-r from-blue-700 to-indigo-700 text-white text-base font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
           >
             Call Us
           </a>
@@ -86,10 +86,10 @@ const App = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 hover:bg-blue-50 rounded-lg transition-colors"
+            className="lg:hidden p-2 hover:bg-blue-100 rounded-xl transition-colors"
           >
             <svg
-              className="w-6 h-6 text-slate-700"
+              className="w-7 h-7 text-slate-700"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -106,8 +106,8 @@ const App = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-blue-100/30 bg-white/98 backdrop-blur">
-            <nav className="section-container py-3 space-y-1">
+          <div className="lg:hidden border-t border-blue-100/30 bg-white/98 backdrop-blur shadow-lg">
+            <nav className="section-container py-4 space-y-2">
               {[
                 ["Home", "hero"],
                 ["About", "about"],
@@ -120,7 +120,7 @@ const App = () => {
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className="block w-full text-left px-4 py-2.5 text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all font-medium text-sm"
+                  className="block w-full text-left px-5 py-3 text-base font-semibold text-slate-700 hover:bg-blue-50 hover:text-blue-700 rounded-xl transition-all"
                 >
                   {label}
                 </button>
@@ -144,7 +144,7 @@ const App = () => {
             {/* Left Content */}
             <div className="space-y-8">
               <div className="space-y-4">
-                <span className="inline-block px-3.5 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-wider">
+                <span className="inline-block px-3.5 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase">
                   ✨ Trusted Healthcare
                 </span>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 leading-tight">
